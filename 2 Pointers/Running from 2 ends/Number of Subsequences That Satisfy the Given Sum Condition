@@ -1,0 +1,55 @@
+Problem Link: https://leetcode.com/problems/number-of-subsequences-that-satisfy-the-given-sum-condition/description/
+
+class Solution {
+    public int numSubseq(int[] nums, int target) {
+        Arrays.sort(nums);
+        int numOfSubSeq = 0;
+        int mod = 1000000007;
+        int n = nums.length;
+
+        int[] power = new int[n];
+        power[0] = 1;
+        for ( int i = 1; i < n; i++) {
+            power[i] = ( 2 * power[i-1] ) % mod;
+        }
+
+        int l = 0 ;
+        int r = n-1;
+
+        while ( l <= r ) {
+            int sum = nums[l] + nums[r];
+            if ( sum > target ) {
+                r--;
+            } else {
+                numOfSubSeq = (numOfSubSeq + power[r-l]) % mod;
+                l++;
+            }
+        }
+    return numOfSubSeq;
+    }
+}
+
+
+Approach:
+
+1. Sort the Array
+- Enables two-pointer technique to find valid min-max pairs efficiently.
+
+2. Precompute Powers of 2
+
+- Calculate power[i] = 2^i % mod to quickly determine the number of valid subsequences in any window.
+
+Two-Pointer Technique
+
+1. Initialize left = 0 (min) and right = n-1 (max).
+
+2. For each window:
+  If nums[left] + nums[right] ≤ target:
+    All subsequences in this window are valid → add 2^(right-left) to result. -> ** We are not adding for full window size (r-l+1). This result only contains subsequences which have the leftmost element present in them. **
+    Move left++ to explore larger minimums.
+  Else:
+    Move right-- to try smaller maximums.
+
+Modulo Operation
+
+Ensures results stay within bounds for large numbers.
