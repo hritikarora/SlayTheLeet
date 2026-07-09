@@ -1,0 +1,29 @@
+Data Structures
+
+Array
+String
+Stack
+Queue
+LinkedList
+List
+Map
+Set
+Pair
+
+
+Common Patterns: 
+
+1. 2 Pointer
+
+1.a Running from both ends of an array
+1.b Slow & Fast Pointers
+1.c Running from beginning of 2 arrays / Merging 2 arrays
+1.d Split & Merge of an array / Divide & Conquer
+
+
+2. Sliding Window
+
+2.a Fix size window
+2.b Variable size window
+
+3. 
